@@ -9,10 +9,13 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
+    "build:ui": "rm -rf dist && cd ../intro-react/part1 && npm run build && cd .. && cp -r part1/dist ../intro-node-express",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "cors": "^2.8.6",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongoose": "^9.3.0"
   }
 }
