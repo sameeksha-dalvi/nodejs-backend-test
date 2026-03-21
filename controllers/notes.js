@@ -11,16 +11,23 @@ notesRouter.get('/', async (request, response) => {
 
 })
 
-notesRouter.get('/:id', (request, response, next) => {
-  Note.findById(request.params.id)
-    .then(note => {
-      if (note) {
-        response.json(note)
-      } else {
-        response.status(404).end()
-      }
-    })
-    .catch(error => next(error))
+notesRouter.get('/:id', async (request, response) => {
+  // Note.findById(request.params.id)
+  //   .then(note => {
+  //     if (note) {
+  //       response.json(note)
+  //     } else {
+  //       response.status(404).end()
+  //     }
+  //   })
+  //   .catch(error => next(error))
+
+  const note = await Note.findById(request.params.id)
+  if (note) {
+    response.json(note)
+  } else {
+    response.status(404).end()
+  }
 })
 
 notesRouter.post('/', async (request, response) => {
